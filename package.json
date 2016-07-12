@@ -1,0 +1,16 @@
+{
+    "name": "uniform-logs",
+    "version": "0.0.1",
+    "description": "Override the default console methods to enforce a single log format",
+    "main": "index.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/panoplyio/uniform-logs.git"
+    },
+    "author": "Lior Rozen",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/panoplyio/uniform-logs/issues"
+    },
+    "homepage": "https://github.com/panoplyio/uniform-logs#readme"
+}
