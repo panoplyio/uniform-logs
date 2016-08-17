@@ -17,15 +17,14 @@ var consoleWrapper = function (func, identifyCaller) {
 var consoleErrorWrapper = function () {
     var orig = console.error;
     return function () {
-        var err = Array.prototype.slice.call(arguments);
+        var args = Array.prototype.slice.call(arguments);
+        var err = args[0]
         var caller = getOriginalCaller(err);
         var values = [
             new Date().toISOString(),
             'ERROR',
-            caller,
-            err,
-            err.stack
-        ];
+            caller
+        ].concat(args, err.stack || '')
         orig.apply(console, values);
     };
 }
@@ -43,7 +42,7 @@ function getOriginalCaller (error) {
     // Index 2 - The console wrapper function
     // Index 3 - Original calling function
     var stackIndex = 1;
-    if (error === undefined) {
+    if (!error || !error.stack) {
         stack = new Error().stack;
         stackIndex = 3;
     } else {
@@ -65,7 +64,7 @@ function override (identifyCaller) {
     console.log = consoleWrapper('log', identifyCaller);
     console.info = consoleWrapper('info', identifyCaller);
     console.warn = consoleWrapper('warn', identifyCaller);
-    console.error = consoleErrorWrapper;
+    console.error = consoleErrorWrapper();
 }
 
 module.exports.override = function (identifyCaller) {
