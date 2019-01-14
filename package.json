@@ -1,6 +1,6 @@
 {
     "name": "uniform-logs",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "Override the default console methods to enforce a single log format",
     "main": "index.js",
     "repository": {

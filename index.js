@@ -24,7 +24,7 @@ var consoleErrorWrapper = function () {
             new Date().toISOString(),
             'ERROR',
             caller
-        ].concat(args, err.stack || '')
+        ].concat(args, (err && err.stack) || '')
         orig.apply(console, values);
     };
 }
